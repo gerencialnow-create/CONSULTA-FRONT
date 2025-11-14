@@ -1,15 +1,19 @@
 // js/login.js
 
+// Pega os elementos do formulário
 const form = document.getElementById('login-form');
 const button = document.getElementById('login-button');
 const errorBox = document.getElementById('login-error');
 
 // URL da API de login na VPS
+// IMPORTANTE: se depois você colocar HTTPS, troque para https://SEU_DOMINIO/api...
 const API_BASE = 'http://72.61.37.214:5050';
 
+// Listener do submit do formulário
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
 
+  // Limpa mensagem de erro
   errorBox.textContent = '';
 
   const username = form.username.value.trim();
@@ -20,6 +24,7 @@ form.addEventListener('submit', async (event) => {
     return;
   }
 
+  // Estado de "carregando"
   button.disabled = true;
   const originalText = button.textContent;
   button.textContent = 'Entrando...';
@@ -33,20 +38,44 @@ form.addEventListener('submit', async (event) => {
       body: JSON.stringify({ username, password })
     });
 
-    const data = await response.json().catch(() => ({}));
+    let data;
+    try {
+      data = await response.json();
+    } catch (e) {
+      data = null;
+    }
 
-    if (!response.ok || !data.ok) {
-      const msg = data.error || 'Usuário ou senha inválidos.';
-      errorBox.textContent = msg;
+    // Se a resposta não for ok OU não tiver "ok: true" no JSON → erro
+    if (!response.ok || !data || !data.ok) {
+      const message =
+        (data && (data.error || data.message)) ||
+        'Usuário ou senha inválidos.';
+      errorBox.textContent = message;
       return;
     }
 
-    // Login OK – por enquanto só redireciona para uma página em branco futura
-    window.location.href = '/dashboard.html';
-  } catch (err) {
-    console.error(err);
-    errorBox.textContent = 'Erro ao conectar com o servidor. Tente novamente.';
+    // Monta objeto do usuário (backend devolve { ok, username, role })
+    const user = {
+      username: data.username || username,
+      role: data.role || 'user',
+      loggedAt: new Date().toISOString()
+    };
+
+    // Guarda no localStorage para usar nas próximas telas (opcional)
+    try {
+      localStorage.setItem('consultaNowUser', JSON.stringify(user));
+    } catch (_) {
+      // Se der erro no localStorage, segue mesmo assim
+    }
+
+    // 🔥 LOGIN OK → Redireciona para o painel
+    window.location.href = 'dashboard.html';
+  } catch (error) {
+    console.error('Erro ao fazer login:', error);
+    errorBox.textContent =
+      'Não foi possível conectar ao servidor de login. Tente novamente.';
   } finally {
+    // Restaura botão
     button.disabled = false;
     button.textContent = originalText;
   }
