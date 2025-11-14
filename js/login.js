@@ -7,7 +7,7 @@ const errorBox = document.getElementById('login-error');
 
 // URL da API de login na VPS
 // IMPORTANTE: se depois você colocar HTTPS, troque para https://SEU_DOMINIO/api...
-const API_BASE = 'http://72.61.37.214:5050';
+const API_BASE = window.location.origin;
 
 // Listener do submit do formulário
 form.addEventListener('submit', async (event) => {
