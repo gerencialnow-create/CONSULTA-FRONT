@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Painel | Consulta Now</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="app-body">
+  <div class="app-layout">
+    <!-- LATERAL ESQUERDA – MENU -->
+    <aside class="app-sidebar">
+      <div class="sidebar-logo">
+        <div class="sidebar-logo-mark">N</div>
+        <div class="sidebar-logo-text">
+          <span class="sidebar-logo-title">NOW PROMOTORA</span>
+          <span class="sidebar-logo-subtitle">Consult Now</span>
+        </div>
+      </div>
+
+      <nav class="sidebar-menu">
+        <p class="sidebar-menu-label">Menu de automações</p>
+
+        <button class="sidebar-item sidebar-item-active">
+          CLT OFF • Facta
+          <span>Nova higienização automática</span>
+        </button>
+
+        <button class="sidebar-item">
+          CLT ON • V8
+        </button>
+
+        <button class="sidebar-item">
+          CLT ON • Presença
+        </button>
+
+        <button class="sidebar-item">
+          CLT FGTS
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button id="status-button" class="link-button">
+          Acompanhar status da higienização
+        </button>
+      </div>
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="app-main">
+      <header class="app-header">
+        <h1>CLT OFF • Facta</h1>
+        <p>Painel de importação de arquivo para higienização automática.</p>
+      </header>
+
+      <section class="upload-card">
+        <h2>Selecione o arquivo para importação</h2>
+
+        <div id="upload-area" class="upload-area">
+          <p class="upload-text">
+            Arraste e solte o arquivo aqui<br />
+            <span>ou</span>
+          </p>
+
+          <button id="file-button" class="primary-button">
+            Escolher arquivo
+          </button>
+
+          <input
+            type="file"
+            id="file-input"
+            accept=".xls,.xlsx,.csv"
+            hidden
+          />
+
+          <p id="file-name" class="upload-file-name">
+            Nenhum arquivo selecionado
+          </p>
+        </div>
+
+        <ul class="upload-hints">
+          <li>
+            O arquivo precisa estar nos formatos
+            <strong>.xls, .xlsx ou .csv</strong>.
+          </li>
+          <li>
+            Caso necessário, baixe o
+            <button id="model-button" class="link-inline">
+              arquivo modelo padrão
+            </button>.
+          </li>
+        </ul>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
