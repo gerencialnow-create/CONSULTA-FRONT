@@ -2,7 +2,7 @@ const form = document.getElementById('login-form');
 const errorBox = document.getElementById('login-error');
 
 // API na VPS
-const API_BASE = 'http://72.61.37.214:5050'; 
+const API_BASE = '/api'; 
 // depois podemos trocar para https://seu-dominio/api
 
 form.addEventListener('submit', async (event) => {
