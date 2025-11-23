@@ -7,7 +7,7 @@ const errorBox = document.getElementById('login-error');
 
 // URL da API de login na VPS
 // IMPORTANTE: se depois você colocar HTTPS, troque para https://SEU_DOMINIO/api...
-const API_BASE = window.location.origin;
+const API_BASE = 'https://nowconsult.cloud/api';
 
 // Listener do submit do formulário
 form.addEventListener('submit', async (event) => {
