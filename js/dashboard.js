@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const API_BASE = 'https://nowconsult.cloud/api';
+    const API_BASE = '/api';
 
     const fileInput   = document.getElementById('file-input');
     const fileButton  = document.getElementById('file-button');
