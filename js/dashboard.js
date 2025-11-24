@@ -1,13 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Base da API – sempre via NGINX
     const API_BASE = '/api';
 
-    const fileInput   = document.getElementById('file-input');
-    const fileButton  = document.getElementById('file-button');
-    const fileName    = document.getElementById('file-name');
-    const uploadArea  = document.getElementById('upload-area');
-    const modelButton = document.getElementById('model-button');
+    const fileInput    = document.getElementById('file-input');
+    const fileButton   = document.getElementById('file-button');
+    const fileName     = document.getElementById('file-name');
+    const uploadArea   = document.getElementById('upload-area');
+    const modelButton  = document.getElementById('model-button');
     const statusButton = document.getElementById('status-button');
-    const sendButton  = document.getElementById('send-button');  // 🔹 botão de envio
+    const sendButton   = document.getElementById('send-button');  // botão de envio
 
     // ============================
     // Seleção do arquivo
@@ -62,31 +63,33 @@ document.addEventListener('DOMContentLoaded', () => {
         formData.append("file", fileInput.files[0]);
 
         try {
+            console.log('[UPLOAD] Enviando para:', `${API_BASE}/facta/upload`);
+
             const response = await fetch(`${API_BASE}/facta/upload`, {
                 method: "POST",
                 body: formData
             });
 
-            let resultText = await response.text();
+            const rawText = await response.text();
             let result;
 
             try {
-                result = JSON.parse(resultText);
+                result = JSON.parse(rawText);
             } catch {
-                result = { raw: resultText };
+                result = { raw: rawText };
             }
 
-            if (response.ok) {
+            console.log('[UPLOAD] Status:', response.status, 'Body:', result);
+
+            if (response.ok && result.ok) {
                 alert("Arquivo enviado com sucesso! A higienização foi iniciada.");
-                console.log(result);
             } else {
                 alert("Erro no envio: " + (result.error || JSON.stringify(result)));
-                console.error(result);
             }
 
         } catch (error) {
+            console.error('[UPLOAD] Erro de conexão:', error);
             alert("Erro ao conectar com o servidor.");
-            console.error(error);
         }
     });
 
