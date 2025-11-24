@@ -5,109 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Acompanhamento das Higienizações</title>
 
-    <!-- IMPORTA O MESMO CSS DO DASHBOARD -->
+    <!-- só o styles.css -->
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/dashboard.css">
-
-    <style>
-        /* Ajustes visuais específicos da tabela */
-        .status-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 25px;
-            background: #0e1a14;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .status-table th {
-            background: #0f4e2a;
-            padding: 12px;
-            text-align: left;
-            font-size: 15px;
-            color: #fff;
-        }
-
-        .status-table td {
-            padding: 12px;
-            border-bottom: 1px solid #123;
-            color: #cfcfcf;
-        }
-
-        .status-table tr:hover {
-            background: #0f3320;
-        }
-
-        .progress-bar {
-            width: 120px;
-            height: 10px;
-            background: #133;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            width: 0%;
-            background: #00ff7f;
-            transition: width .4s;
-        }
-
-        .no-records {
-            padding: 20px;
-            color: #ccc;
-        }
-    </style>
+    <script defer src="js/status.js"></script>
 </head>
+
 <body>
 
-<div class="container">
+<div class="layout-container">
 
-    <!-- MENU LATERAL idêntico ao dashboard -->
+    <!-- MENU LATERAL -->
     <aside class="sidebar">
-        <div class="logo-area">
-            <div class="logo-circle">N</div>
-            <div>
+        <div class="sidebar-header">
+            <div class="user-icon">N</div>
+            <div class="sidebar-title">
                 <h2>NOW PROMOTORA</h2>
                 <span>Consult Now</span>
             </div>
         </div>
 
-        <nav class="menu">
+        <nav class="sidebar-menu">
             <a href="dashboard.html" class="menu-item">CLT OFF • Facta</a>
-            <a href="#" class="menu-item">CLT ON • V8</a>
-            <a href="#" class="menu-item">CLT ON • Presença</a>
-            <a href="#" class="menu-item">CLT FGTS</a>
-        </nav>
+            <a href="#" class="menu-item disabled">CLT ON • V8</a>
+            <a href="#" class="menu-item disabled">CLT ON • Presença</a>
+            <a href="#" class="menu-item disabled">CLT FGTS</a>
 
-        <div class="bottom-link">
-            <a href="status.html">Acompanhar status da higienização</a>
-        </div>
+            <a href="status.html" class="menu-item active bottom-item">
+                Acompanhar status da higienização
+            </a>
+        </nav>
     </aside>
 
-    <!-- CONTEÚDO PRINCIPAL -->
-    <main class="content">
-        <h1>Acompanhamento das Higienizações</h1>
+    <!-- CONTEÚDO -->
+    <main class="main-content">
 
-        <table class="status-table" id="status-table">
-            <thead>
-                <tr>
-                    <th>Arquivo</th>
-                    <th>Banco</th>
-                    <th>Data</th>
-                    <th>Status</th>
-                    <th>Progresso</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody id="status-body">
-                <tr><td colspan="6" class="no-records">Carregando...</td></tr>
-            </tbody>
-        </table>
+        <h1 class="page-title">Acompanhamento das Higienizações</h1>
+
+        <div class="status-table-container">
+            <table class="status-table">
+                <thead>
+                    <tr>
+                        <th>Arquivo</th>
+                        <th>Banco</th>
+                        <th>Data</th>
+                        <th>Status</th>
+                        <th>Progresso</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+
+                <tbody id="status-body">
+                    <tr>
+                        <td colspan="6" class="loading">Nenhuma higienização registrada.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
     </main>
-</div>
 
-<script src="js/status.js"></script>
+</div>
 
 </body>
 </html>
