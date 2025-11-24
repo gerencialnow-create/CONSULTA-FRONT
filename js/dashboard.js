@@ -82,7 +82,11 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('[UPLOAD] Status:', response.status, 'Body:', result);
 
             if (response.ok && result.ok) {
-                alert("Arquivo enviado com sucesso! A higienização foi iniciada.");
+                alert(
+                    "Arquivo enviado com sucesso! A higienização foi iniciada.\n\n" +
+                    "Você pode acompanhar o andamento em \"Acompanhar status da higienização\" " +
+                    "no menu da esquerda."
+                );
             } else {
                 alert("Erro no envio: " + (result.error || JSON.stringify(result)));
             }
@@ -104,6 +108,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Botão "Acompanhar status"
     // ============================
     statusButton.addEventListener('click', () => {
-        alert("Aqui vai abrir a tela de acompanhamento da higienização.");
+        // Por enquanto só abre uma mensagem.
+        // Depois vamos redirecionar para a tela/tabela de acompanhamento.
+        alert("Em breve você poderá acompanhar aqui o status detalhado das higienizações.");
     });
 });
