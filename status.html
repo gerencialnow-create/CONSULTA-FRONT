@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acompanhamento das Higienizações</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script defer src="js/status.js"></script>
+</head>
+
+<body>
+
+<div class="layout-container">
+
+    <!-- MENU LATERAL (MESMO DA DASHBOARD) -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="user-icon">N</div>
+            <div class="sidebar-title">
+                <h2>NOW PROMOTORA</h2>
+                <span>Consult Now</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-menu">
+            <a href="dashboard.html" class="menu-item">CLT OFF • Facta</a>
+            <a href="#" class="menu-item disabled">CLT ON • V8</a>
+            <a href="#" class="menu-item disabled">CLT ON • Presença</a>
+            <a href="#" class="menu-item disabled">CLT FGTS</a>
+
+            <!-- O item atual fica marcado -->
+            <a href="status.html" class="menu-item active bottom-item">
+                Acompanhar status da higienização
+            </a>
+        </nav>
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="main-content">
+
+        <h1 class="page-title">Acompanhamento das Higienizações</h1>
+
+        <div class="status-table-container">
+            <table class="status-table">
+                <thead>
+                    <tr>
+                        <th>Arquivo</th>
+                        <th>Banco</th>
+                        <th>Data</th>
+                        <th>Status</th>
+                        <th>Progresso</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+
+                <tbody id="status-body">
+                    <tr>
+                        <td colspan="6" class="loading">Carregando...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>
